@@ -17,38 +17,20 @@ This repository implements a map-matching algorithm for GPS trajectories, inspir
 1. Clone this repository:
 git clone https://github.com/your-username/map-match.git
 
-text
 
-Collapse
-
-Wrap
-
-Copy
 2. Install dependencies in a virtual environment:
 python -m venv venv
 venv\Scripts\activate  # On Windows, use source venv/bin/activate on macOS/Linux
 pip install networkx psycopg2-binary fiona shapely scipy
 
-text
 
-Collapse
-
-Wrap
-
-Copy
 3. Ensure input shapefiles are in `shp/input/`.
 
 ## Usage
 Run the main script to process GPS tracks and generate matched paths:
 python main.py
 
-text
 
-Collapse
-
-Wrap
-
-Copy
 Output shapefiles will be created in `shp/output/`, e.g., `new_path1.shp`.
 
 ## Visualization
@@ -76,13 +58,7 @@ furnished to do so, subject to the following conditions:
 
 [Include the rest of the MIT License text or link to a LICENSE file.]
 
-text
 
-Collapse
-
-Wrap
-
-Copy
 
 ## Notes
 - This implementation assumes the input data format matches the `shp/input/` examples.
@@ -97,65 +73,25 @@ Copy the entire Markdown text above, paste it into README.md, and save the file 
 Upload to GitHub:
 If you haven’t uploaded the project yet, follow these steps in the VS Code terminal (ensure you’re in C:\Users\Dell\Documents\map-match):
 Initialize a Git repository (if not already done):
-text
 
-Collapse
-
-Wrap
-
-Copy
 git init
-Press Enter.
-Add all files:
-text
 
-Collapse
-
-Wrap
-
-Copy
 git add .
-Press Enter.
-Commit the files:
-text
 
-Collapse
-
-Wrap
-
-Copy
 git commit -m "Initial commit with map-matching project and README"
 Press Enter.
 Create a repository on GitHub:
 Go to github.com/new, name it map-match (or your preferred name), and initialize it with a README (optional, but you can uncheck it since you’re uploading your own).
 Link your local repo to GitHub:
-text
 
-Collapse
-
-Wrap
-
-Copy
 git remote add origin https://github.com/your-username/map-match.git
 Press Enter (replace your-username with your GitHub username).
 Push the files:
-text
 
-Collapse
-
-Wrap
-
-Copy
 git push origin main
 Press Enter. You might need to log in to GitHub or set up an SSH key if prompted.
 If the repository already exists, you can push updates:
-text
 
-Collapse
-
-Wrap
-
-Copy
 git add .
 git commit -m "Added README and project updates"
 git push origin main

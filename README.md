@@ -16,20 +16,16 @@ This repository implements a map-matching algorithm for GPS trajectories, inspir
 ## Installation
 1. Clone this repository:
 git clone https://github.com/your-username/map-match.git
-
-
 2. Install dependencies in a virtual environment:
 python -m venv venv
 venv\Scripts\activate  # On Windows, use source venv/bin/activate on macOS/Linux
 pip install networkx psycopg2-binary fiona shapely scipy
-
-
 3. Ensure input shapefiles are in `shp/input/`.
 
 ## Usage
 Run the main script to process GPS tracks and generate matched paths:
-python main.py
 
+python main.py
 
 Output shapefiles will be created in `shp/output/`, e.g., `new_path1.shp`.
 
@@ -43,60 +39,34 @@ The algorithm produces matched paths as line features, ordered by an `idx` field
 ## Reference
 - [ST-Match: Map-Matching for Low-Sampling-Rate GPS Trajectories](https://www.microsoft.com/en-us/research/publication/map-matching-for-low-sampling-rate-gps-trajectories/)
 
-## License
-[Specify your license here, e.g., MIT, Apache 2.0, or GPL-3.0. If unsure, you can use MIT for simplicity. For example:]
-MIT License
-
-Copyright (c) [Your Name or Organization] [Year]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-[Include the rest of the MIT License text or link to a LICENSE file.]
-
-
 
 ## Notes
 - This implementation assumes the input data format matches the `shp/input/` examples.
 - Adjust `main.py` or input files if your road network or GPS data differs.
-How to Use This README
-Create or Update README.md in VS Code:
-Open VS Code and navigate to the map-match folder.
-If README.md doesn’t exist, right-click in the Explorer pane, select New File, name it README.md, and press Enter.
-If it exists, open it by double-clicking.
-Copy the entire Markdown text above, paste it into README.md, and save the file (Ctrl+S).
-Upload to GitHub:
-If you haven’t uploaded the project yet, follow these steps in the VS Code terminal (ensure you’re in C:\Users\Dell\Documents\map-match):
-Initialize a Git repository (if not already done):
 
-git init
+## Description
+Overview
+The ST-Matching project is a Python-based implementation of a map-matching algorithm designed to align low-sampling-rate GPS trajectories with a road network. Inspired by the ST-Match approach developed by Microsoft Research, as detailed in their paper "Map-Matching for Low-Sampling-Rate GPS Trajectories," this project provides a flexible and efficient solution for reconstructing vehicle paths from GPS data. Unlike traditional map-matching systems that rely on spatial databases like PostGIS, this implementation uses shapefiles for inputs and outputs, making it lightweight and adaptable for various use cases.
 
-git add .
+Purpose
+The primary goal of this project is to accurately match GPS trajectory data—often noisy or sparsely sampled—to a predefined road network, enabling applications such as traffic analysis, route optimization, and navigation system improvement. It is particularly useful for scenarios where GPS data is collected at low frequencies, ensuring robust path reconstruction even with limited data points.
 
-git commit -m "Initial commit with map-matching project and README"
-Press Enter.
-Create a repository on GitHub:
-Go to github.com/new, name it map-match (or your preferred name), and initialize it with a README (optional, but you can uncheck it since you’re uploading your own).
-Link your local repo to GitHub:
+Key Features
+Efficient Algorithm: Utilizes Dijkstra's algorithm to compute the shortest paths between GPS points and the road network, combined with probability-based matching to determine the most likely path.
+Shapefile Integration: Accepts road network data (connected_road.shp) and GPS trajectories (track.shp) as input, stored in the shp/input/ folder, and outputs matched paths as shapefiles in shp/output/ (e.g., new_pathX.shp).
+Performance Optimization: Implements caching to store precomputed Dijkstra distances and paths, improving runtime efficiency for repeated queries.
+Connectivity Checks: Includes logic to detect and handle issues like super-speed (unrealistic travel speeds), ensuring the validity of matched paths.
+Visualization Ready: Outputs are compatible with GIS tools like QGIS, allowing users to visualize matched paths alongside raw GPS data and road networks.
+Technical Details
+Programming Language: Python 3.9 or higher (tested with versions 3.12–3.13).
+Dependencies:
+networkx: For graph-based pathfinding and network analysis.
+psycopg2-binary: For potential database interactions (optional in this implementation).
+fiona: For reading and writing shapefiles.
+shapely: For geometric operations on GPS points and road segments.
+scipy: For spatial and statistical computations, such as Euclidean distance and probability calculations.
+Input Data: Requires two shapefiles:
+connected_road.shp: A directed graph of road segments with attributes like source, target, and weight (distance or cost).
+track.shp: GPS trajectory points with attributes like x, y, track_id, log_time, car_id, and v (velocity).
+Output Data: Generates shapefiles (new_pathX.shp) containing the matched road segments, ordered by an idx field indicating the sequence of roads in each trajectory.
 
-git remote add origin https://github.com/your-username/map-match.git
-Press Enter (replace your-username with your GitHub username).
-Push the files:
-
-git push origin main
-Press Enter. You might need to log in to GitHub or set up an SSH key if prompted.
-If the repository already exists, you can push updates:
-
-git add .
-git commit -m "Added README and project updates"
-git push origin main
-Customize the License:
-Replace [Specify your license here, e.g., MIT, Apache 2.0, or GPL-3.0] with your chosen license. If you’re unsure, the MIT License is simple and permissive.
-You can create a separate LICENSE file with the full license text and reference it in the README.
-Personalize the README:
-Replace [Your Name or Organization] and [Year] in the license section with your details (e.g., your name and 2025).
-Update the GitHub link in “Acknowledgments” to point to your repository once it’s created (e.g., https://github.com/your-username/map-match).

@@ -63,7 +63,6 @@ furnished to do so, subject to the following conditions:
 ## Notes
 - This implementation assumes the input data format matches the `shp/input/` examples.
 - Adjust `main.py` or input files if your road network or GPS data differs.
-- Acknowledgments: This project builds on the work by zhuang-hao-ming, available at [https://github.com/zhuang-hao-ming/map-match](https://github.com/zhuang-hao-ming/map-match).
 How to Use This README
 Create or Update README.md in VS Code:
 Open VS Code and navigate to the map-match folder.
